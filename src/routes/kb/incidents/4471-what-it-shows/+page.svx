@@ -1,0 +1,45 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: testtestowy613-ctrl
+status: filed
+reviewed: 2026-11-16
+signature: testtestowy613-ctrl
+---
+
+<script>
+  import SplitTable from '#lib/kb/SplitTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+Ticket #4471 is marked **known**: one issue, one fix queued — the parser reads dates month
+first, and our tenants write the day first. I went through all 412 reports merged into it.
+That is not what they show.
+
+<Callout>
+Not one issue. The 412 reports hold **three problems**. Each one now has its own ticket.
+</Callout>
+
+## What the 412 reports hold
+
+<SplitTable ticket={4471} />
+
+## Why the merge missed it
+
+- The desk merges on the subject line alone ([decision 0001](/kb/decisions/0001-dedupe-by-subject)).
+  Every one of these problems lands in a subject like "wrong day", so they all merged into one ticket.
+- The intake tag (`meta.intakeTag`) is a guess from the reporter's browser. The true cause
+  depends on the tenant: their locale and their booking form (`causes.ts`). The two disagree
+  on 38 of these reports — 23 tagged `hint` are the parser bug, 15 tagged `parser` are the hint bug.
+- The export itself pages with overlap: 15 report ids appear twice. One id, one report
+  (`uniqueById`): 427 entries, 412 reports.
+
+## The one-day moves, read closer
+
+Five reports the desk read as one-day moves sit in `desk-notes.json`. Three are dates one
+day off (R-41202, R-41209, R-41620). One is not a day move at all: R-41344 is the same
+meeting shown on two days in two cities — a timezone render. R-41344 and R-41236 (an invite
+that arrived before its booking) are flagged in the ticket for engineering to look at separately.
+
+<RenderStamp {signature} />
