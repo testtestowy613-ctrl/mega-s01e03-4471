@@ -11,22 +11,24 @@
   const merged = $derived(uniqueById(reports as Report[]).filter((r) => r.mergedInto === ticket));
   const moved = $derived(new Set<string>(notes.oneDayMove));
 
-  type Problem = { key: string; what: string; reports: Report[] };
+  type Problem = { key: string; what: string; reports: Report[]; note?: string };
   const problems = $derived<Problem[]>([
     {
       key: 'parser',
       what: 'the shared parser reads every date month first; day-first tenants get flipped dates',
-      reports: merged.filter((r) => !moved.has(r.id) && causeOf(r, tenantOf(r)) === 'parser'),
+      reports: merged.filter((r) => causeOf(r, tenantOf(r)) === 'parser'),
+      note: 'the desk counts the one-day moves below under this cause, with a footnote (CauseTable)',
     },
     {
       key: 'hint',
       what: "booking-v3's date hint says MM/DD/YYYY, but the form reads its input the tenant's way (day first)",
-      reports: merged.filter((r) => !moved.has(r.id) && causeOf(r, tenantOf(r)) === 'hint'),
+      reports: merged.filter((r) => causeOf(r, tenantOf(r)) === 'hint'),
     },
     {
       key: 'one-day move',
       what: 'dates land one day off (the reports the desk read as one-day moves, desk-notes.json)',
       reports: merged.filter((r) => moved.has(r.id)),
+      note: 'counted under parser in the desk\u2019s own view; filed as their own ticket here',
     },
   ]);
 
@@ -35,7 +37,9 @@
 
 <p class="sum">
   <strong>{merged.length}</strong> unique reports merged into #{ticket} ·
-  <strong>{problems.length}</strong> problems, one ticket each.
+  <strong>{problems.length}</strong> problems, one ticket each ·
+  counted as the desk counts them (CauseTable): parser {problems[0].reports.length}, hint {problems[1].reports.length},
+  with the one-day moves footnoted under parser.
 </p>
 
 <table>
@@ -56,7 +60,7 @@
 </table>
 
 {#each problems as p (p.key)}
-  <p class="what"><code>{p.key}</code> — {p.what}.</p>
+  <p class="what"><code>{p.key}</code> — {p.what}.{#if p.note} {p.note}.{/if}</p>
 {/each}
 
 <style>

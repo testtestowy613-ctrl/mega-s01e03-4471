@@ -56,20 +56,21 @@
 
     <h2>What the 412 reports hold</h2>
 
-    <p class="sum"><strong>412</strong> unique reports merged into #4471 · <strong>3</strong> problems, one ticket each.</p>
+    <p class="sum"><strong>412</strong> unique reports merged into #4471 · <strong>3</strong> problems, one ticket each ·
+    counted as the desk counts them (CauseTable): parser 379, hint 33, with the one-day moves footnoted under parser.</p>
 
     <table>
       <thead><tr><th>problem</th><th>reports</th><th>tenants</th><th>seen</th><th>sample</th></tr></thead>
       <tbody>
-        <tr><td><code>parser</code></td><td>374</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td>R-41200, R-41201, R-41203</td></tr>
+        <tr><td><code>parser</code></td><td>379</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td>R-41200, R-41201, R-41203</td></tr>
         <tr><td><code>hint</code></td><td>33</td><td>3</td><td>2026-04-17 → 2026-09-22</td><td>R-41230, R-41241, R-41251</td></tr>
         <tr><td><code>one-day move</code></td><td>5</td><td>5</td><td>2026-04-02 → 2026-10-04</td><td>R-41202, R-41209, R-41236</td></tr>
       </tbody>
     </table>
 
-    <p class="what"><code>parser</code> — the shared parser reads every date month first; day-first tenants get flipped dates.</p>
+    <p class="what"><code>parser</code> — the shared parser reads every date month first; day-first tenants get flipped dates. The desk counts the one-day moves below under this cause, with a footnote (CauseTable).</p>
     <p class="what"><code>hint</code> — booking-v3's date hint says MM/DD/YYYY, but the form reads its input the tenant's way (day first).</p>
-    <p class="what"><code>one-day move</code> — dates land one day off (the reports the desk read as one-day moves, desk-notes.json).</p>
+    <p class="what"><code>one-day move</code> — dates land one day off (the reports the desk read as one-day moves, desk-notes.json). Counted under parser in the desk's own view; filed as their own ticket here.</p>
 
     <h2>Why the merge missed it</h2>
     <ul>

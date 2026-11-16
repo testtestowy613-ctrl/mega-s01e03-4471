@@ -8,11 +8,12 @@ analysis of the kb export, one GitHub issue per problem found, and the kb page a
 
 | problem | reports | what it is |
 |---|---|---|
-| `parser` | 374 | The shared parser reads every date month first; day-first tenants (en-GB, de-DE, pl-PL, …) get flipped dates. This is the one bug the ticket admits to. |
+| `parser` | 379 | The shared parser reads every date month first; day-first tenants (en-GB, de-DE, pl-PL, …) get flipped dates. This is the one bug the ticket admits to. The desk's own view (CauseTable) counts the one-day moves below under this cause, with a footnote. |
 | `hint` | 33 | booking-v3's date hint says `MM/DD/YYYY`, people type what the hint says, but the form reads its input the tenant's way (day first) — a second, separate bug. Only the `form` channel, only booking-v3 tenants (alder.physio, copper.studio, pale.harbour). |
-| one-day move | 5 | Dates land one day off (R-41202, R-41209, R-41620); the same desk-note cluster also holds one timezone render (R-41344) and one invite that arrived before its booking (R-41236). |
+| one-day move | 5 | Dates land one day off (R-41202, R-41209, R-41620); the same desk-note cluster also holds one timezone render (R-41344) and one invite that arrived before its booking (R-41236). Counted under parser in the desk's view; filed as their own ticket here. |
 
-374 + 33 + 5 = **412 unique reports**. The export has 427 entries; 15 ids appear twice
+The desk's exported view counts **379 + 33 = 412 unique reports**, with the 5 one-day moves
+footnoted inside parser. The export has 427 entries; 15 ids appear twice
 (the ticket system pages with overlap — `uniqueById` in `src/lib/kb/causes.ts`).
 
 ## How the counts were computed
