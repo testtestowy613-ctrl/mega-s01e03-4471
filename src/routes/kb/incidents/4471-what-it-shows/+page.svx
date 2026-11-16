@@ -42,4 +42,10 @@ day off (R-41202, R-41209, R-41620). One is not a day move at all: R-41344 is th
 meeting shown on two days in two cities — a timezone render. R-41344 and R-41236 (an invite
 that arrived before its booking) are flagged in the ticket for engineering to look at separately.
 
+## Update — the desk closed #4471 (05 Oct)
+
+Engineering update: **parser** — fixed (`fix(dates): parse dd/mm for eu locales`).
+**hint** — won't fix: the booking-v3 form is retired. The one-day moves stay flagged in their
+ticket for engineering (R-41344 timezone, R-41236 ordering).
+
 <RenderStamp {signature} />
