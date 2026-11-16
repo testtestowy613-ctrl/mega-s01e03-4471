@@ -4,7 +4,7 @@ title: '#4471 · three problems, not one'
 owner: testtestowy613-ctrl
 status: filed
 reviewed: 2026-11-16
-signature: testtestowy613-ctrl
+signature: v1.eyJzdWIiOiIzNjA0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTQ4Mzg2ODYsImV4cCI6MTc5NDkyNTA4Nn0.WdUpLw9AladnnCNLStseUvavpYR2cOr_xHb-BK6F88w
 ---
 
 <script>
